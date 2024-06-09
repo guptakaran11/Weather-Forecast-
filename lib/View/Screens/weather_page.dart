@@ -11,15 +11,43 @@ class _HomePageState extends State<WeatherPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
-      children: [
-        Image.asset(
-          "assets/images/haze.jpg",
-          fit: BoxFit.cover,
-          width: double.infinity,
-          height: double.infinity,
-        ),
-      ],
-    ));
+      body: Stack(
+        children: [
+          Image.asset(
+            "assets/images/haze.jpg",
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
+          ),
+          const Padding(
+            padding: EdgeInsets.all(15),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 40,
+                  ),
+                  TextField(
+                    decoration: InputDecoration(
+                      suffixIcon: Icon(
+                        Icons.search,
+                      ),
+                      filled: true,
+                      fillColor: Colors.black26,
+                      hintText: "Enter city name",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(16),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
