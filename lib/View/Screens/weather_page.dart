@@ -42,6 +42,23 @@ class _HomePageState extends State<WeatherPage> {
                       ),
                     ),
                   ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.location_on,
+                      ),
+                      Text(
+                        'Pune',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  )
                 ],
               ),
             ),
