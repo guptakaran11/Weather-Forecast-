@@ -46,6 +46,7 @@ class _HomePageState extends State<WeatherPage> {
                     height: 15,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
                         Icons.location_on,
@@ -58,7 +59,10 @@ class _HomePageState extends State<WeatherPage> {
                         ),
                       ),
                     ],
-                  )
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
                 ],
               ),
             ),
