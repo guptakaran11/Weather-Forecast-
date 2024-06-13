@@ -60,7 +60,7 @@ class _HomePageState extends State<WeatherPage> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 50),
+                  SizedBox(height: 50,),
                 ],
               ),
             ),
