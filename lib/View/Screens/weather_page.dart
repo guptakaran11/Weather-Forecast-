@@ -19,15 +19,16 @@ class _HomePageState extends State<WeatherPage> {
             width: double.infinity,
             height: double.infinity,
           ),
-          const Padding(
-            padding: EdgeInsets.all(15),
+          Padding(
+            padding: const EdgeInsets.all(15),
             child: SingleChildScrollView(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 40,
                   ),
-                  TextField(
+                  const TextField(
                     decoration: InputDecoration(
                       suffixIcon: Icon(
                         Icons.search,
@@ -42,10 +43,10 @@ class _HomePageState extends State<WeatherPage> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
@@ -60,7 +61,35 @@ class _HomePageState extends State<WeatherPage> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 50,),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text(
+                    '30.9 °C',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 90,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    children: [
+                      const Text(
+                        'Haze',
+                        style: TextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Image.asset(
+                        'assets/icons/Haze.png',
+                        height: 80,
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
