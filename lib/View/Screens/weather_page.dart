@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class WeatherPage extends StatefulWidget {
   const WeatherPage({super.key});
@@ -89,6 +90,76 @@ class _HomePageState extends State<WeatherPage> {
                         height: 80,
                       ),
                     ],
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  const Row(
+                    children: [
+                      Icon(Icons.arrow_upward_rounded),
+                      Text(
+                        '35°C',
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 5.0,
+                      ),
+                      Icon(Icons.arrow_downward_rounded),
+                      Text(
+                        '25°C',
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  Card(
+                    elevation: 5,
+                    color: Colors.transparent,
+                    child: Container(
+                      height: 300,
+                      color: Colors.transparent,
+                      child: const Column(
+                        children: [
+                          Wrap(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Text(
+                                    "Sunrise ",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 25,
+                                      fontStyle: FontStyle.italic,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 150,
+                                  ),
+                                  Text(
+                                    "Sunset ",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 25,
+                                      fontStyle: FontStyle.italic,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
