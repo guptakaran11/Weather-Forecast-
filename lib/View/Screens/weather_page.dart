@@ -135,7 +135,7 @@ class _HomePageState extends State<WeatherPage> {
                                     MainAxisAlignment.spaceAround,
                                 children: [
                                   Text(
-                                    "Sunrise ",
+                                    "Sunrise",
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 25,
@@ -146,7 +146,7 @@ class _HomePageState extends State<WeatherPage> {
                                     width: 150,
                                   ),
                                   Text(
-                                    "Sunset ",
+                                    "Sunset",
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 25,
