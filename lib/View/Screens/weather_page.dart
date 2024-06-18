@@ -128,30 +128,24 @@ class _HomePageState extends State<WeatherPage> {
                       color: Colors.transparent,
                       child: const Column(
                         children: [
-                          Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
-                            children: [
-                              Text(
-                                "Sunrise",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 25,
-                                  fontStyle: FontStyle.italic,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 150,
-                              ),
-                              Text(
-                                "Sunset",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 25,
-                                  fontStyle: FontStyle.italic,
-                                ),
-                              ),
-                            ],
+                          Text(
+                            "Sunrise",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 25,
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 150,
+                          ),
+                          Text(
+                            "Sunset",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 25,
+                              fontStyle: FontStyle.italic,
+                            ),
                           ),
                         ],
                       ),
