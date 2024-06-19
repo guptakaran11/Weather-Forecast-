@@ -1,5 +1,8 @@
+//* Packages
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
+//* Widgets
+import '../Widgets/weather_data_tile.dart';
 
 class WeatherPage extends StatefulWidget {
   const WeatherPage({super.key});
@@ -120,32 +123,39 @@ class _HomePageState extends State<WeatherPage> {
                   const SizedBox(
                     height: 25,
                   ),
-                  Card(
+                  const Card(
                     elevation: 5,
                     color: Colors.transparent,
-                    child: Container(
-                      height: 300,
-                      color: Colors.transparent,
-                      child: const Column(
+                    child: Padding(
+                      padding: EdgeInsets.all(15.0),
+                      child: Column(
                         children: [
-                          Text(
-                            "Sunrise",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 25,
-                              fontStyle: FontStyle.italic,
-                            ),
+                          WeatherDataTile(
+                            index1: "Sunrise",
+                            index2: "Sunset",
+                            value1: "6:15 AM",
+                            value2: "6:00 PM",
                           ),
                           SizedBox(
-                            width: 150,
+                            height: 15,
                           ),
-                          Text(
-                            "Sunset",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 25,
-                              fontStyle: FontStyle.italic,
-                            ),
+                          WeatherDataTile(
+                            index1: "Humidity",
+                            index2: "Visibility",
+                            value1: "4",
+                            value2: "10000",
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          WeatherDataTile(
+                            index1: "Precipitation",
+                            index2: "Wind Speed",
+                            value1: "6",
+                            value2: "45",
+                          ),
+                          SizedBox(
+                            height: 15,
                           ),
                         ],
                       ),
