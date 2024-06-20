@@ -110,7 +110,9 @@ class _HomePageState extends State<WeatherPage> {
                       SizedBox(
                         width: 5.0,
                       ),
-                      Icon(Icons.arrow_downward_rounded),
+                      Icon(
+                        Icons.arrow_downward_rounded,
+                      ),
                       Text(
                         '25°C',
                         style: TextStyle(
