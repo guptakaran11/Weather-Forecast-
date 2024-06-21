@@ -4,7 +4,6 @@ import "dart:convert";
 //* Packages
 import 'package:http/http.dart' as http;
 import 'package:geolocator/geolocator.dart';
-import 'package:flutter/material.dart';
 
 class WeatherService {
   final String apiKey = "bca55f940425fd01d61ded1d545ce042";
