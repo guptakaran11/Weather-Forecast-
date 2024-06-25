@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 //* Widgets
 import '../Widgets/weather_data_tile.dart';
 
+//* Services
+import '../../Controller/Services/api_keys.dart';
+
 class WeatherPage extends StatefulWidget {
   const WeatherPage({super.key});
 
@@ -12,6 +15,31 @@ class WeatherPage extends StatefulWidget {
 }
 
 class _HomePageState extends State<WeatherPage> {
+  final TextEditingController controller = TextEditingController();
+
+  String bgImg = 'assets/images/clear.jpg';
+  String iconImg = 'assets/icons/Clear.png';
+  String cityName = '';
+  String temperature = '';
+  String tempMax = '';
+  String tempMin = '';
+  String sunrise = '';
+  String sunset = '';
+  String main = '';
+  String pressure = '';
+  String humidity = '';
+  String visibility = '';
+  String windSpeed = '';
+
+  getData(String cityName) async {
+    final weatherService = WeatherService();
+    final weatherData = await weatherService.getWeatherData(cityName);
+    debugPrint(weatherData.toString());
+    setState(() {
+      
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
