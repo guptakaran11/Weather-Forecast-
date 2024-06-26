@@ -34,7 +34,7 @@ class _HomePageState extends State<WeatherPage> {
   getData(String cityName) async {
     final weatherService = WeatherService();
     final weatherData = await weatherService.getWeatherData(cityName);
-    debugPrint(weatherData.toString());
+    debugPrint(weatherData.toString(),);
     setState(() {
       
     });
