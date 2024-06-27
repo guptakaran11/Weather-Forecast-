@@ -1,5 +1,9 @@
 //* Packages
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:geolocator/geolocator.dart';
 
 //* Widgets
 import '../Widgets/weather_data_tile.dart';
@@ -19,7 +23,7 @@ class _HomePageState extends State<WeatherPage> {
 
   String bgImg = 'assets/images/clear.jpg';
   String iconImg = 'assets/icons/Clear.png';
-  String cityName = '';
+  String placeName = '';
   String temperature = '';
   String tempMax = '';
   String tempMin = '';
@@ -33,10 +37,51 @@ class _HomePageState extends State<WeatherPage> {
 
   getData(String cityName) async {
     final weatherService = WeatherService();
-    final weatherData = await weatherService.getWeatherData(cityName);
-    debugPrint(weatherData.toString(),);
+    Map<String, dynamic> weatherData;
+    if (cityName == '') {
+      weatherData = await weatherService.fetchWeatherData(cityName);
+    } else {
+      weatherData = await weatherService.getWeatherData(cityName);
+    }
+    log(cityName);
+    log(weatherData.toString());
+    // debugPrint(
+    //   weatherData.toString(),
+    // );
     setState(() {
-      
+      placeName = weatherData['name'];
+      temperature = weatherData['main']['temp'].toStringAsFixed(1);
+      main = weatherData['weather'][0]['main'];
+      tempMax = weatherData['main']['temp_max'].toStringAsFixed(1);
+      tempMin = weatherData['main']['temp_min'].toStringAsFixed(1);
+      sunrise = DateFormat('hh:mm a').format(
+          DateTime.fromMillisecondsSinceEpoch(
+              weatherData['sys']['sunrise'] * 1000));
+      sunset = DateFormat('hh:mm a').format(DateTime.fromMillisecondsSinceEpoch(
+          weatherData['sys']['sunset'] * 1000));
+      pressure = weatherData['main']['pressure'].toString();
+      humidity = weatherData['main']['humidity'].toString();
+      visibility = weatherData['visibility'].toString();
+      windSpeed = weatherData['wind']['speed'].toString();
+      if (main == 'Clear') {
+        bgImg = 'assets/images/clear.jpg';
+        iconImg = 'assets/icons/Clear.png';
+      } else if (main == 'Clouds') {
+        bgImg = 'assets/images/clouds.jpg';
+        iconImg = 'assets/icons/Clouds.png';
+      } else if (main == 'Rain') {
+        bgImg = 'assets/images/rain.jpg';
+        iconImg = 'assets/icons/Rain.png';
+      } else if (main == 'Fog') {
+        bgImg = 'assets/images/fog.jpg';
+        iconImg = 'assets/icons/Haze.png';
+      } else if (main == 'Thunderstorm') {
+        bgImg = 'assets/images/thunderstorm.jpg';
+        iconImg = 'assets/icons/Thunderstorm.png';
+      } else {
+        bgImg = 'assets/images/haze.jpg';
+        iconImg = 'assets/icons/Haze.png';
+      }
     });
   }
 
@@ -46,7 +91,7 @@ class _HomePageState extends State<WeatherPage> {
       body: Stack(
         children: [
           Image.asset(
-            "assets/images/haze.jpg",
+            bgImg,
             fit: BoxFit.cover,
             width: double.infinity,
             height: double.infinity,
@@ -60,8 +105,12 @@ class _HomePageState extends State<WeatherPage> {
                   const SizedBox(
                     height: 40,
                   ),
-                  const TextField(
-                    decoration: InputDecoration(
+                  TextField(
+                    controller: controller,
+                    onChanged: (value) {
+                      getData(value);
+                    },
+                    decoration: const InputDecoration(
                       suffixIcon: Icon(
                         Icons.search,
                       ),
@@ -78,15 +127,15 @@ class _HomePageState extends State<WeatherPage> {
                   const SizedBox(
                     height: 15,
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.location_on,
                       ),
                       Text(
-                        'Pune',
-                        style: TextStyle(
+                        placeName,
+                        style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                         ),
@@ -96,9 +145,9 @@ class _HomePageState extends State<WeatherPage> {
                   const SizedBox(
                     height: 20,
                   ),
-                  const Text(
-                    '30.9 °C',
-                    style: TextStyle(
+                  Text(
+                    '$temperature °C',
+                    style: const TextStyle(
                       color: Colors.black,
                       fontSize: 90,
                       fontWeight: FontWeight.bold,
@@ -109,15 +158,15 @@ class _HomePageState extends State<WeatherPage> {
                   ),
                   Row(
                     children: [
-                      const Text(
-                        'Haze',
-                        style: TextStyle(
+                      Text(
+                        main,
+                        style: const TextStyle(
                           fontSize: 40,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                       Image.asset(
-                        'assets/icons/Haze.png',
+                        iconImg,
                         height: 80,
                       ),
                     ],
@@ -125,25 +174,25 @@ class _HomePageState extends State<WeatherPage> {
                   const SizedBox(
                     height: 25,
                   ),
-                  const Row(
+                  Row(
                     children: [
-                      Icon(Icons.arrow_upward_rounded),
+                      const Icon(Icons.arrow_upward_rounded),
                       Text(
-                        '35°C',
-                        style: TextStyle(
+                        '$tempMax°C',
+                        style: const TextStyle(
                           fontSize: 22,
                           fontStyle: FontStyle.italic,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5.0,
                       ),
-                      Icon(
+                      const Icon(
                         Icons.arrow_downward_rounded,
                       ),
                       Text(
-                        '25°C',
-                        style: TextStyle(
+                        '$tempMin°C',
+                        style: const TextStyle(
                           fontSize: 22,
                           fontStyle: FontStyle.italic,
                         ),
@@ -153,38 +202,38 @@ class _HomePageState extends State<WeatherPage> {
                   const SizedBox(
                     height: 25,
                   ),
-                  const Card(
+                  Card(
                     elevation: 5,
                     color: Colors.transparent,
                     child: Padding(
-                      padding: EdgeInsets.all(15.0),
+                      padding: const EdgeInsets.all(15.0),
                       child: Column(
                         children: [
                           WeatherDataTile(
                             index1: "Sunrise",
                             index2: "Sunset",
-                            value1: "6:15 AM",
-                            value2: "6:00 PM",
+                            value1: sunrise,
+                            value2: sunset,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 15,
                           ),
                           WeatherDataTile(
                             index1: "Humidity",
                             index2: "Visibility",
-                            value1: "4",
-                            value2: "10000",
+                            value1: humidity,
+                            value2: visibility,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 15,
                           ),
                           WeatherDataTile(
                             index1: "Precipitation",
                             index2: "Wind Speed",
-                            value1: "6",
-                            value2: "45",
+                            value1: pressure,
+                            value2: windSpeed,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 15,
                           ),
                         ],
@@ -198,5 +247,18 @@ class _HomePageState extends State<WeatherPage> {
         ],
       ),
     );
+  }
+
+  Future<bool> checkLocationPermission() async {
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return false;
+      }
+      getData('');
+    }
+    getData('');
+    return true;
   }
 }

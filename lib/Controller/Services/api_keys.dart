@@ -11,7 +11,8 @@ class WeatherService {
   Future<Map<String, dynamic>> getWeatherData(String cityName) async {
     final response = await http.get(
       Uri.parse(
-          'http://api.openweathermap.org/data/2.0/weather?q=$cityName&appid=$apiKey&units=metric',),
+        'http://api.openweathermap.org/data/2.5/weather?q=$cityName&appid=$apiKey&units=metric',
+      ),
     );
 
     if (response.statusCode == 200) {
@@ -28,7 +29,8 @@ class WeatherService {
     double lng = position.longitude;
     final response = await http.get(
       Uri.parse(
-          'https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lng&appid=$apiKey&units=metric'),
+        'https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lng&appid=$apiKey&units=metric',
+      ),
     );
 
     if (response.statusCode == 200) {
